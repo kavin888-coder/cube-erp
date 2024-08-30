@@ -1,5 +1,5 @@
 import './App.css';
-import {BrowserRouter as Router,Routes,Route} from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './Component/Home';
 import Poplogin from './Component/poplogin';
 import AdminLogin from './Component/adminlogin';
@@ -24,34 +24,105 @@ import EmployeeTeam from './Component/Employee/TeamEmployee';
 import EmployeeProfile from './Component/Employee/ProfileEmployee';
 import EmployeeSettings from './Component/Employee/SettingsEmployee';
 
+import ProtectedRoute from './Component/ProtectedRoute';
+
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path='/' element={<Home/>}/>
-        <Route path='/popup' element={<Poplogin/>}/>
-        <Route path='/adminlogin' element={<AdminLogin/>}/>
-        <Route path='/employeelogin' element={<EmployeeLogin/>}/>
+        <Route path='/' element={<Home />} />
+        <Route path='/popup' element={<Poplogin />} />
+        <Route path='/adminlogin' element={<AdminLogin />} />
+        <Route path='/employeelogin' element={<EmployeeLogin />} />
 
+        {/* Protected Admin Routes */}
+        <Route path='/admindashboard' element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        } />
+        <Route path='/adminemployee' element={
+          <ProtectedRoute>
+            <AdminEmployee />
+          </ProtectedRoute>
+        } />
+        <Route path='/employeeAdd' element={
+          <ProtectedRoute>
+            <EmployeeAdd />
+          </ProtectedRoute>
+        } />
+        <Route path='/editEmployee' element={
+          <ProtectedRoute>
+            <EditEmployee />
+          </ProtectedRoute>
+        } />
+        <Route path='/adminattendence' element={
+          <ProtectedRoute>
+            <AdminAttendence />
+          </ProtectedRoute>
+        } />
+        <Route path='/admintask' element={
+          <ProtectedRoute>
+            <AdminTasks />
+          </ProtectedRoute>
+        } />
+        <Route path='/addNewtask' element={
+          <ProtectedRoute>
+            <NewTask />
+          </ProtectedRoute>
+        } />
+        <Route path='/adminteam' element={
+          <ProtectedRoute>
+            <AdminTeam />
+          </ProtectedRoute>
+        } />
+        <Route path='/addNewteam' element={
+          <ProtectedRoute>
+            <NewTeam />
+          </ProtectedRoute>
+        } />
+        <Route path='/adminprofile' element={
+          <ProtectedRoute>
+            <AdminProfile />
+          </ProtectedRoute>
+        } />
+        <Route path='/adminsettings' element={
+          <ProtectedRoute>
+            <Settings />
+          </ProtectedRoute>
+        } />
 
-        <Route path='/admindashboard' element={<Dashboard/>}/>
-        <Route path='/adminemployee' element={<AdminEmployee/>}/>
-        <Route path='/employeeAdd' element={<EmployeeAdd/>}/>
-        <Route path='/editEmployee' element={<EditEmployee/>}/>
-        <Route path='/adminattendence' element={<AdminAttendence/>}/>
-        <Route path='/admintask' element={<AdminTasks/>}/>
-        <Route path='/addNewtask' element={<NewTask/>}/>
-        <Route path='/adminteam' element={<AdminTeam/>}/>
-        <Route path='/addNewteam' element={<NewTeam/>}/>
-        <Route path='/adminprofile' element={<AdminProfile/>}/>
-        <Route path='/adminsettings' element={<Settings/>}/>
-
-        <Route path='/employeeDashboard' element={<EmployeeDashboard/>}/>
-        <Route path='/employeeAttendence' element={<EmployeeAttendence/>}/>
-        <Route path='/employeetask' element={<EmployeeTasks/>}/>
-        <Route path='/employeeteam' element={<EmployeeTeam/>}/>
-        <Route path='/employeeProfile' element={<EmployeeProfile/>}/>
-        <Route path='/employeeSettings' element={<EmployeeSettings/>}/>
+        {/* Protected Employee Routes */}
+        <Route path='/employeeDashboard' element={
+          <ProtectedRoute>
+            <EmployeeDashboard />
+          </ProtectedRoute>
+        } />
+        <Route path='/employeeAttendence' element={
+          <ProtectedRoute>
+            <EmployeeAttendence />
+          </ProtectedRoute>
+        } />
+        <Route path='/employeetask' element={
+          <ProtectedRoute>
+            <EmployeeTasks />
+          </ProtectedRoute>
+        } />
+        <Route path='/employeeteam' element={
+          <ProtectedRoute>
+            <EmployeeTeam />
+          </ProtectedRoute>
+        } />
+        <Route path='/employeeProfile' element={
+          <ProtectedRoute>
+            <EmployeeProfile />
+          </ProtectedRoute>
+        } />
+        <Route path='/employeeSettings' element={
+          <ProtectedRoute>
+            <EmployeeSettings />
+          </ProtectedRoute>
+        } />
       </Routes>
     </Router>
   );
