@@ -21,6 +21,8 @@ const AdminLogin = () => {
         } else if (userId !== 'admin' || password !== 'password123') {
             setError('Incorrect User ID or Password');
         } else {
+            // Successful login, store a token in localStorage
+            localStorage.setItem('authToken', 'your_token_here');
             setError('');
             navigate('/admindashboard'); 
         }
@@ -32,7 +34,7 @@ const AdminLogin = () => {
 
     const handleCancelClick = () => {
         window.location.reload(); 
-      };
+    };
 
     return (
         <Box sx={{ width: "100vw", minHeight: "100vh", display: "flex", flexDirection: "column" }}>
