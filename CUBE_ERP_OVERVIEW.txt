@@ -1,0 +1,59 @@
+CUBE ERP: PROJECT OVERVIEW AND ACTION PLAN
+
+1. MAIN MOTIVATION FOR THE COMPANY
+
+The primary objective of the Cube ERP (Enterprise Resource Planning) system is to centralize, digitize, and streamline the core operational and human resource workflows within the organization. By adopting a modern web-based portal, the company aims to:
+- Reduce Administrative Overhead: Automate and consolidate the tracking of employee details, attendance, tasks, and teams.
+- Enhance Operational Transparency: Provide clear, role-based visibility. Administrators can oversee company-wide metrics, while employees have a dedicated portal to track their performance, attendance, and assigned tasks.
+- Boost Productivity: Integrate advanced dashboards, analytics, and intuitive UIs so management can make data-driven decisions quickly.
+- Scale with the Company: Build a robust full-stack architecture capable of adapting as the company expands.
+
+2. ADVANCED TECHNOLOGIES AND TECH STACK (REACT + FIREBASE)
+
+The project requires a full-stack architecture to handle both the user interface and secure data processing. Utilizing Firebase allows for rapid development without managing custom server infrastructure.
+- Frontend Framework: React 18, React Router DOM v6
+- Frontend UI & Styling: Material-UI (MUI) v5, Ant Design (antd), Emotion, Roboto Font
+- Frontend Data Visualization: MUI X-Charts, Recharts
+- Frontend Utilities: Axios (if fetching external APIs), Date-fns & Day.js, React Datepicker
+- Backend as a Service (BaaS): Firebase
+- Database: Firebase Cloud Firestore (NoSQL, real-time database)
+- Authentication: Firebase Authentication (Email/Password, Google OAuth, Role-based claims)
+- Storage: Firebase Cloud Storage (for employee profile pictures or file attachments)
+
+3. NEEDS TO GET WORKING (SETUP & CONFIGURATION)
+To successfully run, test, and develop this application with Firebase, the following prerequisites are required:
+1. Node.js Environment: Ensure Node.js (v16 or higher) is installed.
+2. Firebase Project: A configured Firebase project created in the Firebase Console (console.firebase.google.com).
+3. Firebase Configurations: The frontend needs to be initialized with the specific Firebase Config keys within a firebase.js setup file.
+4. Environment Variables: Store the Firebase Admin and Client keys inside a secure .env file.
+5. Start Application: Run the frontend server (npm start on port 3000). The backend is fully handled by Firebase via the client SDK.
+
+4. TASK PLAN TO COMPLETE & EXTEND THE PROJECT (FRONTEND & FIREBASE)
+
+Phase 1: Firebase Project Setup & Initialization
+Task: Instantiate the Firebase services.
+Action: Set up Firestore database rules to ensure employees can only read/write their data, while Admins have full access. Configure Firebase Authentication methods. Add the Firebase SDK to the React project.
+
+Phase 2: Authentication & Authorization Integrity
+Task: Secure the login flows via Firebase Auth.
+Action: Integrate the employeeLogin.js and adminlogin.js screens using Firebase Authentication. Implement Firebase Custom Claims to identify who has "Admin" rights versus standard "Employee" rights. Ensure React Router guards prevent employees from accessing Admin routes.
+
+Phase 3: Complete the Admin Dashboard (Firestore Integration)
+Task: Finalize Data Integrations in Admin modules.
+Action: Build Firestore CRUD operations. Connect the frontend Admin Employee, Attendance, Tasks, and Team components to read and write directly to the Cloud Firestore database.
+
+Phase 4: Employee Portal Connectivity
+Task: Sync Employee views with their respective Firestore documents.
+Action: Create Firestore queries tailored for the employee view. Ensure DashboardEmployee, TasksEmployee, and AttendenceEmployee accurately fetch only the authenticated user's data based on their Firebase User ID (UID).
+
+Phase 5: Data Visualization Polish
+Task: Refine Dashboard Metrics.
+Action: Write efficient Firestore queries to aggregate statistics (e.g., weekly attendance percentage) and avoid unnecessary database reads. Render these on the frontend using MUI X-Charts and Recharts.
+
+Phase 6: Testing & QA
+Task: Implement Full-Stack Testing.
+Action: Write unit tests for the core React components and utilize the Firebase Emulator Suite to safely test database rules and logic locally.
+
+Phase 7: Production Build & Deployment
+Task: Optimize for Production.
+Action: Run npm run build. Deploy the React application to Firebase Hosting utilizing the Firebase CLI for a seamless, fully-integrated ecosystem.

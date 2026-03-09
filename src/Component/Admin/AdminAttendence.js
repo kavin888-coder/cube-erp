@@ -1,5 +1,5 @@
-import React, { useState} from 'react';
-import { Box, Card, FormControl, InputAdornment, InputLabel, OutlinedInput, Select, MenuItem, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, TextField, Pagination, Paper,Grid } from '@mui/material';
+import React, { useState } from 'react';
+import { Box, Card, FormControl, InputAdornment, InputLabel, OutlinedInput, Select, MenuItem, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, TextField, Pagination, Paper, Grid } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import Nav from './Assets/Nav';
 import Side from './Assets/Side';
@@ -21,8 +21,8 @@ const adminTable = [
 
 const AdminAttendence = () => {
 
-    const [data, setData] = useState(adminTable);
-    const [searchTerm, setSearchTerm] = useState(''); 
+    const [data] = useState(adminTable);
+    const [searchTerm, setSearchTerm] = useState('');
     const [staff, setStaff] = useState('');
     const [page, setPage] = useState(0);
     const [rowsPerPage] = useState(10);
@@ -30,17 +30,17 @@ const AdminAttendence = () => {
 
     const handleStaffFilter = (event) => {
         setStaff(event.target.value);
-        setPage(0); 
+        setPage(0);
     };
-    
+
     const handleSearchChange = (event) => {
-        setSearchTerm(event.target.value.toLowerCase()); 
+        setSearchTerm(event.target.value.toLowerCase());
         setPage(0);
     };
 
     const filterData = () => {
         return data.filter(staffMember => {
-            const matchesSearch = Object.values(staffMember).some(value => 
+            const matchesSearch = Object.values(staffMember).some(value =>
                 value.toString().toLowerCase().includes(searchTerm)
             );
             const matchesStaffFilter = staff ? staffMember.role === staff : true;
@@ -64,109 +64,109 @@ const AdminAttendence = () => {
 
 
     return (
-                <Grid container bgcolor={'#E5F1FF'} sx={{ height: '100vh', overflowY: "auto" }}>
-                <Grid item lg={12} xs={12} sx={{ flexShrink: 0 }}>
+        <Grid container bgcolor={'#E5F1FF'} sx={{ height: '100vh', overflowY: "auto" }}>
+            <Grid item lg={12} xs={12} sx={{ flexShrink: 0 }}>
                 <Nav sx={{ height: '64px' }} />
-                </Grid>
-        
-                <Grid container item lg={12} xs={11.5} sx={{ height: 'calc(100vh - 64px)' }}>
+            </Grid>
+
+            <Grid container item lg={12} xs={11.5} sx={{ height: 'calc(100vh - 64px)' }}>
                 <Grid item lg={2} md={1.2} sm={2} xs={12} sx={{ height: '100%' }}>
                     <Side />
                 </Grid>
-        
+
                 <Grid item lg={9.8} md={10.8} sm={10} xs={12} bgcolor={'#E5F1FF'} sx={{ height: '100%', mt: -5 }}>
                     <Card sx={{ width: '100%', height: '130px', borderRadius: '20px', mt: 2, ml: "20px" }}>
-                    <Grid container spacing={2} sx={{ p: 1,mt:"-5px"}}>
-                        <Grid item xs={12} sm={3.5} sx={{ml:2, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: { xs: 'center', sm: 'flex-start' } }}>
-                        <Typography sx={{ fontWeight: "400", fontSize: "14px", color: "#121212" }}>
-                            Quick search a staff
-                        </Typography>
-                        <TextField
-                            variant="outlined"
-                            placeholder="Enter search word"
-                            value={searchTerm}
-                            onChange={handleSearchChange}
-                            InputProps={{
-                            endAdornment: (
-                                <InputAdornment position="start">
-                                <SearchIcon />
-                                </InputAdornment>
-                            ),
-                            }}
-                            sx={{
-                            width: '100%',
-                            maxWidth: '350px',
-                            borderRadius: 1,
-                            backgroundColor: 'white',
-                            mt: 1,
-                            '& .MuiOutlinedInput-root': {
-                                '& fieldset': {
-                                border: "1px solid #D0D0D0",
-                                borderRadius: "10px",
-                                },
-                                '&:hover fieldset': {
-                                border: "1px solid #D0D0D0",
-                                borderRadius: "10px",
-                                },
-                                '&.Mui-focused fieldset': {
-                                border: "1px solid #D0D0D0",
-                                borderRadius: "10px",
-                                },
-                            },
-                            }}
-                        />
-                        </Grid>
-                        <Grid item xs={12} sm={3.5} sx={{ml:3, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: { xs: 'center', sm: 'flex-start' } }}>
-                        <Typography sx={{ fontWeight: "800", fontSize: "24px", color: "#272525" }}>
-                            {adminTable.length}
-                        </Typography>
-                        <Typography sx={{ fontWeight: "400", fontSize: "14px", color: "#515151" }}>
-                            Total number of staff
-                        </Typography>
-                        </Grid>
-                        <Grid item xs={12} sm={3.5} sx={{ml:3, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: { xs: 'center', sm: 'flex-start' } }}>
-                        <Typography sx={{ fontWeight: "400", fontSize: "14px", color: "#121212" }}>
-                            Filter Staff
-                        </Typography>
-                        <FormControl sx={{ width: "100%", mt: "10px", borderRadius: "20px", background: "#F2F7FF", border: "none" }}>
-                            <InputLabel id="staff-label">All Staff</InputLabel>
-                            <Select
-                            labelId="staff-label"
-                            id="staff-select"
-                            value={staff}
-                            onChange={handleStaffFilter}
-                            input={
-                                <OutlinedInput
-                                label="Staff"
-                                sx={{
-                                    borderRadius: "10px",
-                                    "& .MuiOutlinedInput-notchedOutline": {
-                                    border: "none"
-                                    },
-                                }}
+                        <Grid container spacing={2} sx={{ p: 1, mt: "-5px" }}>
+                            <Grid item xs={12} sm={3.5} sx={{ ml: 2, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: { xs: 'center', sm: 'flex-start' } }}>
+                                <Typography sx={{ fontWeight: "400", fontSize: "14px", color: "#121212" }}>
+                                    Quick search a staff
+                                </Typography>
+                                <TextField
+                                    variant="outlined"
+                                    placeholder="Enter search word"
+                                    value={searchTerm}
+                                    onChange={handleSearchChange}
+                                    InputProps={{
+                                        endAdornment: (
+                                            <InputAdornment position="start">
+                                                <SearchIcon />
+                                            </InputAdornment>
+                                        ),
+                                    }}
+                                    sx={{
+                                        width: '100%',
+                                        maxWidth: '350px',
+                                        borderRadius: 1,
+                                        backgroundColor: 'white',
+                                        mt: 1,
+                                        '& .MuiOutlinedInput-root': {
+                                            '& fieldset': {
+                                                border: "1px solid #D0D0D0",
+                                                borderRadius: "10px",
+                                            },
+                                            '&:hover fieldset': {
+                                                border: "1px solid #D0D0D0",
+                                                borderRadius: "10px",
+                                            },
+                                            '&.Mui-focused fieldset': {
+                                                border: "1px solid #D0D0D0",
+                                                borderRadius: "10px",
+                                            },
+                                        },
+                                    }}
                                 />
-                            }
-                            sx={{
-                                borderRadius: "10px",
-                                "& .MuiOutlinedInput-notchedOutline": {
-                                border: "none",
-                                },
-                            }}
-                            >
-                            <MenuItem value="">All Staff</MenuItem>
-                            <MenuItem value="Admin">Admin Staff</MenuItem>
-                            <MenuItem value="I.T">I.T Staff</MenuItem>
-                            <MenuItem value="P.M Staff">P.M Staff</MenuItem>
-                            <MenuItem value="None">None</MenuItem>
-                            </Select>
-                        </FormControl>
+                            </Grid>
+                            <Grid item xs={12} sm={3.5} sx={{ ml: 3, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: { xs: 'center', sm: 'flex-start' } }}>
+                                <Typography sx={{ fontWeight: "800", fontSize: "24px", color: "#272525" }}>
+                                    {adminTable.length}
+                                </Typography>
+                                <Typography sx={{ fontWeight: "400", fontSize: "14px", color: "#515151" }}>
+                                    Total number of staff
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={12} sm={3.5} sx={{ ml: 3, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: { xs: 'center', sm: 'flex-start' } }}>
+                                <Typography sx={{ fontWeight: "400", fontSize: "14px", color: "#121212" }}>
+                                    Filter Staff
+                                </Typography>
+                                <FormControl sx={{ width: "100%", mt: "10px", borderRadius: "20px", background: "#F2F7FF", border: "none" }}>
+                                    <InputLabel id="staff-label">All Staff</InputLabel>
+                                    <Select
+                                        labelId="staff-label"
+                                        id="staff-select"
+                                        value={staff}
+                                        onChange={handleStaffFilter}
+                                        input={
+                                            <OutlinedInput
+                                                label="Staff"
+                                                sx={{
+                                                    borderRadius: "10px",
+                                                    "& .MuiOutlinedInput-notchedOutline": {
+                                                        border: "none"
+                                                    },
+                                                }}
+                                            />
+                                        }
+                                        sx={{
+                                            borderRadius: "10px",
+                                            "& .MuiOutlinedInput-notchedOutline": {
+                                                border: "none",
+                                            },
+                                        }}
+                                    >
+                                        <MenuItem value="">All Staff</MenuItem>
+                                        <MenuItem value="Admin">Admin Staff</MenuItem>
+                                        <MenuItem value="I.T">I.T Staff</MenuItem>
+                                        <MenuItem value="P.M Staff">P.M Staff</MenuItem>
+                                        <MenuItem value="None">None</MenuItem>
+                                    </Select>
+                                </FormControl>
+                            </Grid>
                         </Grid>
-                    </Grid>
                     </Card>
-                    <TableContainer component={Paper} sx={{ width: '100%', height: 'auto', mt: 2, borderRadius: '10px', overflow: 'auto',ml:"20px" }}>
-                    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-                        <Box sx={{ display: 'flex', justifyContent: 'space-between', padding: 2 }}>
-                            <Typography sx={{ fontWeight: "700", fontSize: "20px", color: "#515151" }}>
+                    <TableContainer component={Paper} sx={{ width: '100%', height: 'auto', mt: 2, borderRadius: '10px', overflow: 'auto', ml: "20px" }}>
+                        <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+                            <Box sx={{ display: 'flex', justifyContent: 'space-between', padding: 2 }}>
+                                <Typography sx={{ fontWeight: "700", fontSize: "20px", color: "#515151" }}>
                                     All Staff
                                 </Typography>
                                 <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
@@ -184,56 +184,56 @@ const AdminAttendence = () => {
                                 </Box>
                             </Box>
                             <Box sx={{ flex: 1, overflow: 'auto' }}>
-                            <Table>
+                                <Table>
                                     <TableHead>
                                         <TableRow>
                                             <TableCell sx={{ borderBottom: "none" }}>
-                                                <Typography sx={{ fontWeight: "700", fontSize:"14px", color: "#515151" }}>
+                                                <Typography sx={{ fontWeight: "700", fontSize: "14px", color: "#515151" }}>
                                                     S/N
                                                 </Typography>
                                             </TableCell>
                                             <TableCell sx={{ borderBottom: "none" }}>
-                                                <Typography sx={{ fontWeight: "700", fontSize:"14px", color: "#515151" }}>
+                                                <Typography sx={{ fontWeight: "700", fontSize: "14px", color: "#515151" }}>
                                                     Name
                                                 </Typography>
                                             </TableCell>
                                             <TableCell sx={{ borderBottom: "none" }}>
-                                                <Typography sx={{ fontWeight: "700", fontSize:"14px", color: "#515151" }}>
+                                                <Typography sx={{ fontWeight: "700", fontSize: "14px", color: "#515151" }}>
                                                     Staff ID
                                                 </Typography>
                                             </TableCell>
                                             <TableCell sx={{ borderBottom: "none" }}>
-                                                <Typography sx={{ fontWeight: "700", fontSize:"14px", color: "#515151" }}>
+                                                <Typography sx={{ fontWeight: "700", fontSize: "14px", color: "#515151" }}>
                                                     Role
                                                 </Typography>
                                             </TableCell>
                                             <TableCell sx={{ borderBottom: "none" }}>
-                                                <Typography sx={{ fontWeight: "700", fontSize:"14px", color: "#515151" }}>
+                                                <Typography sx={{ fontWeight: "700", fontSize: "14px", color: "#515151" }}>
                                                     Phone Number
                                                 </Typography>
                                             </TableCell>
                                             <TableCell sx={{ borderBottom: "none" }}>
-                                                <Typography sx={{ fontWeight: "700", fontSize:"14px", color: "#515151" }}>
+                                                <Typography sx={{ fontWeight: "700", fontSize: "14px", color: "#515151" }}>
                                                     Date
                                                 </Typography>
                                             </TableCell>
                                             <TableCell sx={{ borderBottom: "none" }}>
-                                                <Typography sx={{ fontWeight: "700", fontSize:"14px", color: "#515151" }}>
+                                                <Typography sx={{ fontWeight: "700", fontSize: "14px", color: "#515151" }}>
                                                     Check In
                                                 </Typography>
                                             </TableCell>
                                             <TableCell sx={{ borderBottom: "none" }}>
-                                                <Typography sx={{ fontWeight: "700", fontSize:"14px", color: "#515151" }}>
+                                                <Typography sx={{ fontWeight: "700", fontSize: "14px", color: "#515151" }}>
                                                     Check Out
                                                 </Typography>
                                             </TableCell>
                                             <TableCell sx={{ borderBottom: "none" }}>
-                                                <Typography sx={{ fontWeight: "700", fontSize:"14px", color: "#515151" }}>
+                                                <Typography sx={{ fontWeight: "700", fontSize: "14px", color: "#515151" }}>
                                                     Status
                                                 </Typography>
                                             </TableCell>
                                             <TableCell sx={{ borderBottom: "none" }}>
-                                                <Typography sx={{ fontWeight: "700", fontSize:"14px", color: "#515151" }}>
+                                                <Typography sx={{ fontWeight: "700", fontSize: "14px", color: "#515151" }}>
                                                     Working Hours
                                                 </Typography>
                                             </TableCell>
@@ -243,53 +243,53 @@ const AdminAttendence = () => {
                                         {paginatedData.map((staffMember) => (
                                             <TableRow key={staffMember.no}>
                                                 <TableCell sx={{ borderBottom: "none" }}>
-                                                    <Typography sx={{ fontWeight: "400", fontSize:"14px",color: "#515151" }}>
+                                                    <Typography sx={{ fontWeight: "400", fontSize: "14px", color: "#515151" }}>
                                                         {staffMember.no}
                                                     </Typography>
                                                 </TableCell>
                                                 <TableCell sx={{ borderBottom: "none" }}>
-                                                    <Typography sx={{ fontWeight: "400", fontSize:"14px", color: "#515151" }}>
+                                                    <Typography sx={{ fontWeight: "400", fontSize: "14px", color: "#515151" }}>
                                                         {staffMember.name}
                                                     </Typography>
                                                 </TableCell>
                                                 <TableCell sx={{ borderBottom: "none" }}>
-                                                    <Typography sx={{ fontWeight: "400", fontSize:"14px", color: "#515151" }}>
+                                                    <Typography sx={{ fontWeight: "400", fontSize: "14px", color: "#515151" }}>
                                                         {staffMember.staffId}
                                                     </Typography>
                                                 </TableCell>
                                                 <TableCell sx={{ borderBottom: "none" }}>
-                                                    <Typography sx={{ fontWeight: "400", fontSize:"14px", color: "#515151" }}>
+                                                    <Typography sx={{ fontWeight: "400", fontSize: "14px", color: "#515151" }}>
                                                         {staffMember.role}
                                                     </Typography>
                                                 </TableCell>
                                                 <TableCell sx={{ borderBottom: "none" }}>
-                                                    <Typography sx={{ fontWeight: "400", fontSize:"14px", color: "#515151" }}>
+                                                    <Typography sx={{ fontWeight: "400", fontSize: "14px", color: "#515151" }}>
                                                         {staffMember.phoneNumber}
                                                     </Typography>
                                                 </TableCell>
                                                 <TableCell sx={{ borderBottom: "none" }}>
-                                                    <Typography sx={{ fontWeight: "400", fontSize:"14px", color: "#515151" }}>
+                                                    <Typography sx={{ fontWeight: "400", fontSize: "14px", color: "#515151" }}>
                                                         {staffMember.date}
                                                     </Typography>
                                                 </TableCell>
                                                 <TableCell sx={{ borderBottom: "none" }}>
-                                                    <Typography sx={{ fontWeight: "400", fontSize: "14px",color: staffMember.checkIn === "9:00"?"#0043FF":staffMember.checkIn === "00:00"?'#AA0000':staffMember.checkIn==="10:30"?"#D5B500":"black" }}>
+                                                    <Typography sx={{ fontWeight: "400", fontSize: "14px", color: staffMember.checkIn === "9:00" ? "#0043FF" : staffMember.checkIn === "00:00" ? '#AA0000' : staffMember.checkIn === "10:30" ? "#D5B500" : "black" }}>
                                                         {staffMember.checkIn}
                                                     </Typography>
                                                 </TableCell>
                                                 <TableCell sx={{ borderBottom: "none" }}>
-                                                    <Typography sx={{ fontWeight: "400", fontSize: "14px",color: staffMember.checkOut==='18:00'?"#0043FF":"#AA0000" }}>
+                                                    <Typography sx={{ fontWeight: "400", fontSize: "14px", color: staffMember.checkOut === '18:00' ? "#0043FF" : "#AA0000" }}>
                                                         {staffMember.checkOut}
                                                     </Typography>
                                                 </TableCell>
 
-                                                <TableCell sx={{borderBottom:"none"}}>
-                                                    <Typography sx={{ fontWeight: "400", fontSize:"14px",color: staffMember.status === "Work from home" ? "#FEB634" : staffMember.status === "Absent" ? "#AA0000" :staffMember.status === "Work from office" ? "#8A8A8A":"black",}}>
+                                                <TableCell sx={{ borderBottom: "none" }}>
+                                                    <Typography sx={{ fontWeight: "400", fontSize: "14px", color: staffMember.status === "Work from home" ? "#FEB634" : staffMember.status === "Absent" ? "#AA0000" : staffMember.status === "Work from office" ? "#8A8A8A" : "black", }}>
                                                         {staffMember.status}
                                                     </Typography>
                                                 </TableCell>
                                                 <TableCell sx={{ borderBottom: "none" }}>
-                                                    <Typography sx={{ fontWeight: "400", fontSize:"14px", color: "#004E69" }}>
+                                                    <Typography sx={{ fontWeight: "400", fontSize: "14px", color: "#004E69" }}>
                                                         {staffMember.hours}
                                                     </Typography>
                                                 </TableCell>
@@ -300,10 +300,10 @@ const AdminAttendence = () => {
                             <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
                                 <Pagination variant="outlined" shape="rounded"
                                     count={totalPages}
-                                    page={page+1}
+                                    page={page + 1}
                                     onChange={handleChangePage}
                                     color="primary"
-                                style={{marginBottom:"40px",marginTop:"10px",marginLeft:"10px"}}/>
+                                    style={{ marginBottom: "40px", marginTop: "10px", marginLeft: "10px" }} />
                             </Box>
                         </Box>
                     </TableContainer>
